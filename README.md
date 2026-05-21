@@ -78,7 +78,7 @@ HF_API_TOKEN=
 HF_MODEL=Qwen/Qwen2.5-7B-Instruct
 HF_TTS_MODEL=facebook/mms-tts-eng
 USE_HF_AI=false
-GROQ_API_KEY=
+GROQ_API_KEY=your-groq-api-key
 GROQ_MODEL=llama-3.1-8b-instant
 TRANSLATION_PROVIDER=groq
 ```
@@ -265,13 +265,4 @@ For production PostgreSQL, replace `DATABASE_URL` with a PostgreSQL connection s
 DATABASE_URL=postgresql+psycopg://USER:PASSWORD@HOST:PORT/DATABASE
 ```
 
-The project includes `psycopg[binary]` in `requirements.txt`, so PostgreSQL URLs are deployment-ready.
-
-## Known Limitations
-
-- Scanned image PDFs are not OCR-supported yet. Upload text-based PDFs.
-- Best AI notes and flashcards require `GROQ_API_KEY`. Without it, ALDST uses a safer local fallback.
-- Translation uses Groq for deployment, with optional Argos local mode described in Translation Setup.
-- Browser audio uses the Web Speech API, not downloadable MP3/WAV generation.
-- The local AI fallback is lightweight by design. Groq is recommended for natural study notes and exam-material cleanup.
-- SQLite is fine for local demos. Use PostgreSQL/Supabase for production persistence.
+The project includes `psycopg[binary]` in `requirements.txt`
