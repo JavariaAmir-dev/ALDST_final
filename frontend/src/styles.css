@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f6f1e8;
+  color: #2f302c;
+  font-family: "Lexend", Atkinson Hyperlegible, Arial, sans-serif;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+  text-rendering: optimizeLegibility;
+}
+
+textarea,
+input,
+select,
+button {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  outline-offset: 4px;
+}
+
+.reading-area {
+  font-size: 18px;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+}
+
+.card {
+  @apply rounded-2xl border border-[#ded8cb] bg-[#fffaf0]/85 shadow-sm;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-sageDark px-5 py-3 text-base font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#425d45] focus-visible:ring-4 focus-visible:ring-sage/30 disabled:cursor-not-allowed disabled:opacity-60;
+}
+
+.btn-soft {
+  @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-sage/40 bg-[#fffaf0] px-5 py-3 text-base font-bold text-sageDark transition hover:-translate-y-0.5 hover:bg-[#eef3ec] focus-visible:ring-4 focus-visible:ring-sage/25;
+}
+
+.field {
+  @apply w-full rounded-2xl border border-[#d9d1c2] bg-[#fffaf0] px-4 py-3 text-[18px] outline-none transition focus:border-sageDark focus:ring-4 focus:ring-sage/20;
+}
+
+.flashcard {
+  min-height: 26rem;
+  perspective: 1200px;
+  outline: none;
+}
+
+.flashcard:focus-visible .flashcard-inner {
+  box-shadow: 0 0 0 5px rgba(143, 167, 139, 0.35), 0 18px 45px rgba(47, 48, 44, 0.16);
+}
+
+.flashcard-inner {
+  display: grid;
+  min-height: 26rem;
+  transform-style: preserve-3d;
+  transition: transform 420ms ease, box-shadow 240ms ease, scale 240ms ease;
+  box-shadow: 0 0 0 3px rgba(143, 167, 139, 0.16), 0 16px 42px rgba(47, 48, 44, 0.12);
+}
+
+.flashcard:hover .flashcard-inner {
+  scale: 1.015;
+  box-shadow: 0 0 0 3px rgba(143, 167, 139, 0.18), 0 20px 50px rgba(47, 48, 44, 0.16);
+}
+
+.flashcard.is-flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  grid-area: 1 / 1;
+  min-height: 26rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  backface-visibility: hidden;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+.flashcard-fade {
+  animation: flashcard-fade 220ms ease both;
+}
+
+@keyframes flashcard-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.completion-pop {
+  animation: completion-pop 900ms ease both;
+}
+
+@keyframes completion-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 8px) scale(0.96);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-50%, -4px) scale(1.02);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -18px) scale(1);
+  }
+}
+
+.confetti-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: -2rem 0 auto 0;
+  z-index: 20;
+  height: 18rem;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: 0;
+  width: 0.7rem;
+  height: 1rem;
+  border-radius: 0.2rem;
+  animation: confetti-fall 1500ms ease-out forwards;
+}
+
+.confetti-1 { background: #8fa78b; transform: rotate(8deg); }
+.confetti-2 { background: #f4d7a1; transform: rotate(-14deg); }
+.confetti-3 { background: #d9a6a1; transform: rotate(18deg); }
+.confetti-4 { background: #8db8ad; transform: rotate(-8deg); }
+.confetti-5 { background: #fffaf0; transform: rotate(22deg); }
+.confetti-6 { background: #4f6f52; transform: rotate(-18deg); }
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 0;
+    translate: 0 -1rem;
+    rotate: 0deg;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 16rem;
+    rotate: 260deg;
+  }
+}
+
+.motion-reduced .flashcard-inner,
+.motion-reduced.flashcard-fade,
+.motion-reduced.completion-pop,
+.motion-reduced .confetti-piece,
+.motion-reduced .btn-primary,
+.motion-reduced .btn-soft,
+.motion-reduced * {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flashcard-inner,
+  .completion-pop,
+  .confetti-piece,
+  .flashcard-fade,
+  .btn-primary,
+  .btn-soft {
+    animation: none !important;
+    transition: none !important;
+  }
+}
